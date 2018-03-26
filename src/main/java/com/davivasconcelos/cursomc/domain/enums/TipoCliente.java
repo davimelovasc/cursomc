@@ -1,7 +1,5 @@
 package com.davivasconcelos.cursomc.domain.enums;
 
-import org.hibernate.boot.model.naming.IllegalIdentifierException;
-
 public enum TipoCliente {
 	PESSOAFISICA(1, "Pessoa Física"),
 	PESSOAJURIDICA(2, "Pessoa Jurídica");

@@ -1,0 +1,28 @@
+package com.davivasconcelos.cursomc.resources;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.davivasconcelos.cursomc.domain.Cliente;
+import com.davivasconcelos.cursomc.repositories.ClienteRepository;
+
+@RestController
+@RequestMapping(value="/clientes")
+public class ClienteResource {
+	
+	@Autowired
+	private ClienteRepository repo;
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public ResponseEntity<?> find(@PathVariable Integer id) {
+		
+		Cliente c = repo.findById(id).orElse(null);
+		
+		return ResponseEntity.ok(c);
+	}
+
+}
