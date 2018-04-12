@@ -3,6 +3,7 @@ package com.davivasconcelos.cursomc.resources;
 
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.davivasconcelos.cursomc.domain.Categoria;
+import com.davivasconcelos.cursomc.dto.CategoriaDTO;
 import com.davivasconcelos.cursomc.services.CategoriaService;
 
 @RestController
@@ -28,6 +30,13 @@ public class CategoriaResource {
 		Categoria categoria = service.find(id);
 		
 		return ResponseEntity.ok().body(categoria);
+	}
+	
+	@RequestMapping(method=RequestMethod.GET)
+	public ResponseEntity<List<CategoriaDTO>> findAll() {
+		List<CategoriaDTO> categoriasDTO = service.findAll();
+		
+		return ResponseEntity.ok().body(categoriasDTO);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
@@ -53,5 +62,6 @@ public class CategoriaResource {
 		
 		return ResponseEntity.noContent().build();
 	}
+	
 
 }
