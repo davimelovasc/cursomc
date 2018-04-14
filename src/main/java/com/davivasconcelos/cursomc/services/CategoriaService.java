@@ -21,7 +21,7 @@ public class CategoriaService {
 	
 	@Autowired
 	private CategoriaRepository repo;
-
+	
 	public Categoria find(Integer id) {
 		Categoria categoria =  repo.findById(id).orElse(null);
 		if(categoria == null) {

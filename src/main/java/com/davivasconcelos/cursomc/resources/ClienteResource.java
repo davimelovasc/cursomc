@@ -1,5 +1,6 @@
 package com.davivasconcelos.cursomc.resources;
 
+import java.net.URI;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.davivasconcelos.cursomc.domain.Cliente;
 import com.davivasconcelos.cursomc.dto.ClienteDTO;
+import com.davivasconcelos.cursomc.dto.ClienteNewDTO;
 import com.davivasconcelos.cursomc.services.ClienteService;
 
 @RestController
@@ -54,6 +57,16 @@ public class ClienteResource {
 		return ResponseEntity.ok().body(pageDTO);
 	}
 	
+	@RequestMapping(method=RequestMethod.POST)
+	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO cDTO) {
+		Cliente c = service.fromDTO(cDTO);
+		c = service.insert(c);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}").buildAndExpand(c.getId()).toUri();
+		
+		return ResponseEntity.created(uri).build();
+	}
+	
 	
 	@RequestMapping(value="{id}", method=RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO cDTO, @PathVariable Integer id) {
@@ -73,5 +86,6 @@ public class ClienteResource {
 		
 		return ResponseEntity.noContent().build();
 	}
+	
 
 }
