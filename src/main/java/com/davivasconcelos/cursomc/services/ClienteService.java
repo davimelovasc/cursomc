@@ -55,9 +55,16 @@ public class ClienteService {
 	
 	public void delete(Integer id) {
 		try {
-			repo.delete(find(id));
+			Cliente c = find(id);
+			
+			if(c.getPedidos().size() == 0) {
+				repo.delete(c);
+			} else {
+				throw new DataIntegrityException("Não é possível excluir um cliente com pedidos");
+			}
+			
 		}catch(DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possível excluir um cliente com entidades relacionadas");
+			throw new DataIntegrityException("Não é possível excluir um cliente com pedidos");
 		}
 	}
 	

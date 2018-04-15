@@ -3,6 +3,7 @@ package com.davivasconcelos.cursomc.resources;
 import java.net.URI;
 import java.util.List;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,7 @@ public class ClienteResource {
 		return ResponseEntity.ok().body(pageDTO);
 	}
 	
+	@Transactional
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO cDTO) {
 		Cliente c = service.fromDTO(cDTO);
@@ -72,10 +74,7 @@ public class ClienteResource {
 	public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO cDTO, @PathVariable Integer id) {
 		Cliente c = service.fromDTO(cDTO);
 		c.setId(id);
-		/*Cliente aux = service.find(id);
-		c.setCpfOuCnpj(aux.getCpfOuCnpj());
-		c.setTipo(aux.getTipo());
-		c = service.update(c);*/
+		service.update(c);
 		
 		return ResponseEntity.noContent().build();
 	}
