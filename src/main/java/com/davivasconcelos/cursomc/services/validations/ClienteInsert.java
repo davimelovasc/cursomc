@@ -1,4 +1,4 @@
-package com.davivasconcelos.cursomc.dto.validations;
+package com.davivasconcelos.cursomc.services.validations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

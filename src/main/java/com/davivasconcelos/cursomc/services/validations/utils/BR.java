@@ -1,4 +1,4 @@
-package com.davivasconcelos.cursomc.dto.validations.utils;
+package com.davivasconcelos.cursomc.services.validations.utils;
 
 
 //Fonte: https://gist.github.com/adrianoluis/5043397d378ae506d87366abb0ab4e30

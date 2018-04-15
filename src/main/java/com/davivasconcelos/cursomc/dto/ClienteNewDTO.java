@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.davivasconcelos.cursomc.dto.validations.ClienteInsert;
+import com.davivasconcelos.cursomc.services.validations.ClienteInsert;
 
 @ClienteInsert
 public class ClienteNewDTO implements Serializable{
